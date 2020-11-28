@@ -5,20 +5,22 @@
       color="primary"
       dark
     >
-      <v-app-bar-nav-icon @click="openSideNavBar"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="toggleSideMenu"></v-app-bar-nav-icon>
       <v-toolbar-title>Stream Check</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
+    <SideNavbar></SideNavbar>
 
-    <v-main>
-      <SideNavbar :drawer="this.drawer"></SideNavbar>
-    </v-main>
+    <v-container fluid fill-height align-start>
+        <router-view/>
+      </v-container>
   </v-app>
 </template>
 
 <script>
-import SideNavbar from './components/SideNavBar'
+import { mapActions } from 'vuex'
 
+import SideNavbar from './components/SideNavBar'
 export default {
 
 name: 'App',
@@ -28,13 +30,10 @@ components: {
 },
 
 data: () => ({
-  drawer:false
 }),
 
 methods: {
-  openSideNavBar () {
-    this.drawer = !this.drawer
-  }
+  ...mapActions( ['toggleSideMenu'] )
 }
 };
 </script>

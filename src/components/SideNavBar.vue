@@ -1,7 +1,6 @@
 <template>
-    <v-container fluid fill-height>
 
-        <v-navigation-drawer v-model="drawer" absolute temporary>
+        <v-navigation-drawer v-model="$store.state.drawer" absolute temporary>
             <v-list>
                 <v-list-item>
                     <v-list-item-avatar>
@@ -14,7 +13,7 @@
 
         <v-divider></v-divider>
 
-                <v-list-item v-for="(item, index) in items" :key="index">
+                <v-list-item v-for="(item, index) in items" :key="index" :to="item.link">
                     <v-list-item-icon>
                         <v-icon>{{ item.icon }}</v-icon>
                     </v-list-item-icon>
@@ -24,18 +23,17 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-    </v-container>
 </template>
 
 <script>
 export default {
 
-props:['drawer'],
-
 data () {
     return {
         items: [
-        { title: 'お気に入りストリーマー一覧', icon: 'mdi-menu' }
+        { title: 'ストリーマー一覧', icon: 'mdi-list', link: { name: 'streamers'}},
+        { title: '使用方法', icon: 'mdi-list', link: { name: 'about'}}
+
         ]
     }
 },
