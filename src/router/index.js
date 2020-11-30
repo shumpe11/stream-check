@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Streamers from '../views/Streamers.vue'
+import StreamersForm from '../views/StreamersFrom.vue'
+
 
 Vue.use(VueRouter)
 
@@ -16,6 +18,11 @@ const routes = [
     path: '/streamers',
     name: 'streamers',
     component: Streamers
+  },
+  {
+    path: '/streamers/:streamer_id?/edit',
+    name: 'streamer_edit',
+    component: StreamersForm
   },
   {
     path: '/about',
