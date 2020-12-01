@@ -7,7 +7,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     drawer: false,
-    streamers:{}
+    streamers:[ 
+              {name : "test",
+              platform: "twitch",
+              is_live : true }
+              ]
   },
   mutations: {
     toggleSideMenu (state) {
