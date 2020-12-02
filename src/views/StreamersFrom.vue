@@ -28,7 +28,12 @@
                 <router-link v-if="selectedPlatform === 'Youtube'" to="../about" target="_blank">
                 チャンネルIDの調べ方についてはこちら
                 </router-link>
-                
+                <v-text-field
+                :value="appropriateName"
+                label="配信者名"
+                v-if="selectedPlatform !== ''"
+                readonly
+                ></v-text-field>
                 <!-- <v-text-field v-model="appropriateName" label="名前"></v-text-field> -->
                 <div class="text-center">
                     <v-btn @click="$router.push({ name: 'streamers' })">キャンセル</v-btn>
@@ -78,22 +83,29 @@ export default {
         //     })
         // },
         confirmChannel () {
-            // const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
-            // let url = CORS_PROXY + "https://www.youtube.com/feeds/videos.xml?channel_id=" + this.streamer.id
-            // let config = { responseType: 'document'}
-            // axios.get(url, config)
-            // .then((response) => {
-            //     // if (response.status === 404) {
-            //     // this.appropriateName = ''
-            //     // console.log("チャンネルが見つかりません")
-            //     // }   
-            //     console.log(response)
-            //     let appropriateStreamerName = response.data.getElementsByTagName("name")[0].textContent
-            //     this.appropriateName = appropriateStreamerName
+            const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
+            let url = CORS_PROXY + "https://www.youtube.com/feeds/videos.xml?channel_id=" + this.streamer.id
+            let config = { responseType: 'document'}
+            axios.get(url, config)
+            .then((response) => {
+                // if (response.status === 404) {
+                // this.appropriateName = ''
+                // console.log("チャンネルが見つかりません")
+                // }   
+                
+                let appropriateStreamerName = response.data.getElementsByTagName("name")[0].textContent
+                console.log(appropriateStreamerName)
+                
+                this.appropriateName = appropriateStreamerName
+            })
+            console.log("aaa")
+            // axios.get("https://www.youtube.com/feeds/videos.xml?channel_id=" + this.streamer.id)
+            // .then(res => {
+            //     console.log(res)
             // })
-            // console.log("aaa")
-            axios.get("https://www.googleapis.com/youtube/v3/channels?part=snippet&id=" + this.streamer.id + YOUTUBE_API_KEY)
-            .then(res => console.log(res.data.items[0].snippet.thumbnails.default.url))
+            // .catch(error => {
+            //     console.log(error)
+            // })
 
         }
     }
