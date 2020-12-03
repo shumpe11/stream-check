@@ -38,6 +38,8 @@
                 <div class="text-center">
                     <v-btn @click="$router.push({ name: 'streamers' })">キャンセル</v-btn>
                     <v-btn color="info" class="ml-2">保存</v-btn>
+                    <v-btn color="info" class="ml-2" @click="getMessageAction">tes</v-btn>
+
                 </div>
             </v-form>
         </v-card-text>
@@ -49,6 +51,7 @@
 
 <script>
 import axios from 'axios'
+import { mapActions } from 'vuex'
 
 export default {
     data () {
@@ -60,7 +63,7 @@ export default {
             // params: {
             //     part : "snippet",
             //     id : this.streamer.id,
-            //     key : "AIzaSyCufCm0VrFd8SKYbVFba1ADIwAoqZlPqIE"
+            //     key : "Google key"
             // }
         }
     },
@@ -107,7 +110,8 @@ export default {
             //     console.log(error)
             // })
 
-        }
+        },
+        ...mapActions(['getMessageAction'])
     }
 }
 </script>
