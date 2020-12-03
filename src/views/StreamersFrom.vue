@@ -63,52 +63,31 @@ export default {
             // params: {
             //     part : "snippet",
             //     id : this.streamer.id,
-            //     key : "Google ley"
+            //     key : process.env.VUE_APP_GOOGLE_APIKEY
             // }
         }
     },
     methods:{
-        // confirmChannel () {
-        //     const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
-        //     fetch(CORS_PROXY + "https://www.youtube.com/feeds/videos.xml?channel_id=" + this.streamer.id)
-        //     .then((response) => {
-        //     if (response.status === 404) {
-        //         this.appropriateName = ''
-        //         console.log("チャンネルが見つかりません")
-        //     }
-        //     response.text()
-        //     .then((text) => {
-        //         const el = new DOMParser().parseFromString(text, 'text/html')
-        //         console.log(el.querySelector('name').textContent)
-        //         this.appropriateName = el.querySelector('name').textContent
-                
-        //     })
-        //     })
-        // },
         confirmChannel () {
             const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
             let url = CORS_PROXY + "https://www.youtube.com/feeds/videos.xml?channel_id=" + this.streamer.id
             let config = { responseType: 'document'}
-            axios.get(url, config)
-            .then((response) => {
+            axios.get(url, config).then((res) => {
                 // if (response.status === 404) {
                 // this.appropriateName = ''
                 // console.log("チャンネルが見つかりません")
                 // }   
-                
-                let appropriateStreamerName = response.data.getElementsByTagName("name")[0].textContent
-                console.log(appropriateStreamerName)
-                
+                console.log(res)
+                let appropriateStreamerName = res.data.getElementsByTagName("name")[0].textContent
                 this.appropriateName = appropriateStreamerName
-            })
-            console.log("aaa")
-            // axios.get("https://www.youtube.com/feeds/videos.xml?channel_id=" + this.streamer.id)
-            // .then(res => {
-            //     console.log(res)
-            // })
-            // .catch(error => {
-            //     console.log(error)
-            // })
+            }).catch(error => {
+                const {
+                    status,
+                    statusText
+                } = error.response;
+                console.log(`Error! HTTP Status: ${status} ${statusText}`);
+});
+
 
         },
         ...mapActions(['getMessageAction'])
