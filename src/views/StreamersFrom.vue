@@ -63,7 +63,7 @@ export default {
             // params: {
             //     part : "snippet",
             //     id : this.streamer.id,
-            //     key : "Google key"
+            //     key : "Google ley"
             // }
         }
     },
