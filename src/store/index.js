@@ -32,7 +32,7 @@ export default new Vuex.Store({
       const config = {
         headers : {
           'Client-ID': "vx6iy0mqhcdo911e5go0ismko9ynf2",
-          // 'Authorization': 'Bearer fdwwfji5c3yr9kys1gu15l4yexokek'
+          'Authorization': process.env.VUE_APP_TWITCH_BEARER_TOKEN
           "Accept":"application/vnd.twitchtv.v5+json"
         }
       }
