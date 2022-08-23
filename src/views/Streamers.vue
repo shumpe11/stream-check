@@ -29,7 +29,7 @@
 </template>
 
 <script>
-// import { mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name:"streamers",
@@ -54,7 +54,7 @@ export default {
       //     this.deleteAddress({ id })
       //   }
       // },
-      // ...mapActions(['deleteAddress'])
+      ...mapActions(['deleteAddress'])
     }
   }
 
